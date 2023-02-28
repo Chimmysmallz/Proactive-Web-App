@@ -26,7 +26,7 @@ if (empty($_POST["terms"])) {
 }
 
 $EmailTo = "yourname@domain.com";
-$Subject = "New privacy request from Tivo landing page";
+$Subject = "New privacy request from ProActive landing page";
 
 // prepare email body text
 $Body = "";
