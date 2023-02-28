@@ -25,8 +25,8 @@ if (empty($_POST["terms"])) {
     $terms = $_POST["terms"];
 }
 
-$EmailTo = "yourname@domain.com";
-$Subject = "New sign up from Tivo landing page";
+$EmailTo = "chimmysmallz@github.com";
+$Subject = "New sign up from ProActive landing page";
 
 // prepare email body text
 $Body = "";
