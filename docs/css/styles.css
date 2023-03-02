@@ -45,7 +45,10 @@ pre.code-format {
 	margin-bottom: -5px;
 }
 
-
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
 
 /************************/
 /*     Page Content     */
