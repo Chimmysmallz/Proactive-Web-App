@@ -1,4 +1,5 @@
 <?php
+include 'db_connect.php';
 $errorMSG = "";
 
 if (empty($_POST["email"])) {
@@ -25,34 +26,19 @@ if (empty($_POST["terms"])) {
     $terms = $_POST["terms"];
 }
 
-$EmailTo = "chimmysmallz@github.com";
-$Subject = "New sign up from ProActive landing page";
+if(empty($errorMSG)) {
+    $query = "INSERT INTO Users (name, email, password) VALUES ('$name', '$email', '$password')";
+    $result = mysqli_query($connection, $query);
 
-// prepare email body text
-$Body = "";
-$Body .= "Email: ";
-$Body .= $email;
-$Body .= "\n";
-$Body .= "Name: ";
-$Body .= $name;
-$Body .= "\n";
-$Body .= "Password: ";
-$Body .= $password;
-$Body .= "\n";
-$Body .= "Terms: ";
-$Body .= $terms;
-$Body .= "\n";
-
-// send email
-$success = mail($EmailTo, $Subject, $Body, "From:".$email);
-// redirect to success page
-if ($success && $errorMSG == ""){
-   echo "success";
-}else{
-    if($errorMSG == ""){
-        echo "Something went wrong :(";
+    if($result) {
+        header('Location: login.php');
     } else {
-        echo $errorMSG;
+        $errorMSG = "Error inserting user details.";
     }
+}
+
+// redirect to signup page with error message
+if(!empty($errorMSG)) {
+    header('Location: signup.php?error=' . urlencode($errorMSG));
 }
 ?>
