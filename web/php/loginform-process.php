@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'db_connect.php';
 $errorMSG = "";
 
 if (empty($_POST["email"])) {
@@ -13,28 +15,20 @@ if (empty($_POST["password"])) {
     $password = $_POST["password"];
 }
 
-$EmailTo = "chimmysmallz@github.com";
-$Subject = "New log in from ProActive landing page";
+if(empty($errorMSG)) {
+    $query = "SELECT * FROM Users WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($connection, $query);
 
-// prepare email body text
-$Body = "";
-$Body .= "Email: ";
-$Body .= $email;
-$Body .= "\n";
-$Body .= "Password: ";
-$Body .= $password;
-$Body .= "\n";
-
-// send email
-$success = mail($EmailTo, $Subject, $Body, "From:".$email);
-// redirect to success page
-if ($success && $errorMSG == ""){
-   echo "success";
-}else{
-    if($errorMSG == ""){
-        echo "Something went wrong :(";
+    if(mysqli_num_rows($result) == 1) {
+        $_SESSION['email'] = $email;
+        header('Location: dashboard.php');
     } else {
-        echo $errorMSG;
+        $errorMSG = "Invalid login credentials.";
     }
+}
+
+// redirect to login page with error message
+if(!empty($errorMSG)) {
+    header('Location: login.php?error=' . urlencode($errorMSG));
 }
 ?>
