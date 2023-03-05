@@ -4,11 +4,11 @@
 
 $db_host = "localhost";
 
-$db_user = "username";
+$db_user = "proactive_user";
 
 $db_pass = "password";
 
-$db_name = "database_name";
+$db_name = "proactive";
 
 // Establish database connection
 
