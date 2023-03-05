@@ -26,6 +26,37 @@ if (!$conn) {
     exit();
 }
 
+function checkUserLogin($email, $password) {
+  // create connection
+  $conn = db_connect();
+
+  // prepare SQL statement
+  $stmt = $conn->prepare("SELECT id FROM Users WHERE email = ? AND password = ?");
+
+  // bind parameters
+  $stmt->bind_param("ss", $email, $password);
+
+  // execute statement
+  $stmt->execute();
+
+  // bind result variables
+  $stmt->bind_result($id);
+
+  // fetch value
+  $stmt->fetch();
+
+  // close statement and connection
+  $stmt->close();
+  $conn->close();
+
+  // return user id or false if no user found
+  if ($id) {
+    return $id;
+  } else {
+    return false;
+  }
+}
+
 // example usage of SQL queries
 $email = 'example@example.com';
 $stmt = $mysqli->prepare(QUERY_GET_USER_BY_EMAIL);
