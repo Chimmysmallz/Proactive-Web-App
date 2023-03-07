@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="ProActive is a project management web app built for my ALX project to help you manage projects.">
+    <meta name="author" content="Chimmysmallz">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="ProActive" /> <!-- website name -->
+	<meta property="og:site" content="https://proactiveprojectmanagement-chidexnwabulue.b4a.run/" /> <!-- website link -->
+	<meta property="og:title" content="ProActive Project Manager"/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>ProActive - Making Projects More Productive</title>
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+    <link href="css/swiper.css" rel="stylesheet">
+	<link href="css/magnific-popup.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="images/favicon.png">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">ProActive</a> -->
+
+            <!-- Image Logo -->
+            <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.png" alt="alternative" style="width:70px; height:70px;"></a> 
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#features">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#details">DETAILS</a>
+                    </li>
+
+
+                    <!-- Dropdown Menu -->          
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle page-scroll" href="#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="article-details.html"><span class="item-text">How to Use</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">Terms and Conditions</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">Privacy Policy</span></a>
+                        </div>
+                    </li>
+                    <!-- end of dropdown menu -->
+        
+                     
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PROJECTS</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="projects/project-list.php">View Projects</a>
+                            <a class="dropdown-item" href="projects/project-create.php">Create Project</a>
+                        </div>
+                    </li>
+                    <?php } ?>
+
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY PROJECTS</a>
+                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <?php
+                           // Fetch the list of projects for the current user
+                           $user_id = $_SESSION['user_id'];
+                    
+		    
+<?php
+session_start();
+
+// Check if user is not logged in, then redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>  
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- CSS stylesheets -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<!-- Navigation bar -->
+	<nav>
+		<ul>
+			<li><a href="index.php">Home</a></li>
+			<li><a href="project.php">Projects</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+	</nav>
+
+	<!-- Project list -->
+	<h1>My Projects</h1>
+	<ul>
+		<li><a href="project_detail.php?project_id=1">Project 1</a></li>
+		<li><a href="project_detail.php?project_id=2">Project 2</a></li>
+		<li><a href="project_detail.php?project_id=3">Project 3</a></li>
+		<!-- Add more project links here as needed -->
+	</ul>
+
+	<!-- Project dashboard -->
+	<div>
+		<h2>Project Dashboard</h2>
+		<p>Project summary and key metrics go here</p>
+		<!-- Add more project dashboard content here as needed -->
+	</div>
+
+	<!-- Create new project form -->
+	<div>
+		<h2>Create a New Project</h2>
+		<form method="POST" action="create_project.php">
+			<label for="project_name">Project Name:</label>
+			<input type="text" name="project_name" required><br><br>
+			<label for="project_description">Project Description:</label>
+			<textarea name="project_description" required></textarea><br><br>
+			<button type="submit">Create Project</button>
+		</form>
+	</div>
+
+	<!-- Edit project form -->
+	<div>
+		<h2>Edit Project</h2>
+		<form method="POST" action="edit_project.php">
+			<label for="project_name">Project Name:</label>
+			<input type="text" name="project_name" required><br><br>
+			<label for="project_description">Project Description:</label>
+			<textarea name="project_description" required></textarea><br><br>
+			<button type="submit">Save Changes</button>
+			<button type="button" onclick="deleteProject()">Delete Project</button>
+		</form>
+	</div>
+
+	<!-- JavaScript code to handle project deletion -->
+	<script>
+		function deleteProject() {
+			var confirmDelete = confirm("Are you sure you want to delete this project?");
+			if (confirmDelete) {
+				// Perform delete operation using AJAX or form submission
+			}
+		}
+	</script>
+</body>
+</html>
