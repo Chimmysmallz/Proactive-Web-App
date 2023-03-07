@@ -86,25 +86,33 @@
                         </div>
                     </li>
                     <!-- end of dropdown menu -->
-        
-                     
-                    <?php if (isset($_SESSION['user_id'])) { ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PROJECTS</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="projects/project-list.php">View Projects</a>
-                            <a class="dropdown-item" href="projects/project-create.php">Create Project</a>
-                        </div>
-                    </li>
-                    <?php } ?>
+                           
+         
+<?php if (isset($_SESSION['user_id'])) { ?>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PROJECTS</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="projects/project-list.php">View Projects</a>
+            <a class="dropdown-item" href="projects/project-create.php">Create Project</a>
+        </div>
+    </li>
+<?php } ?>
 
-                    <?php if (isset($_SESSION['user_id'])) { ?>
-                    <li class="nav-item dropdown">
-                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY PROJECTS</a>
-                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <?php
-                           // Fetch the list of projects for the current user
-                           $user_id = $_SESSION['user_id'];
+<?php if (isset($_SESSION['user_id'])) { ?>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY PROJECTS</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php
+                // Fetch the list of projects for the current user
+                $user_id = $_SESSION['user_id'];
+            ?>
+            <a class="dropdown-item" href="#">Project 1</a>
+            <a class="dropdown-item" href="#">Project 2</a>
+            <a class="dropdown-item" href="#">Project 3</a>
+            <!-- Add more project links here as needed -->
+        </div>
+    </li>
+<?php } ?>
                     
 		    
 <?php
