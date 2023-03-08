@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - ProActive</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="dashboard.php">Dashboard</a></li>
+            <li><a href="projects.php">Projects</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to your dashboard</h1>
+    <p>Here you can view and manage all of your projects.</p>
+    <div class="dashboard">
+  <h2>Dashboard</h2>
+  <section class="upcoming-tasks">
+    <h3>Upcoming Tasks</h3>
+    <?php
+      // Generate list of upcoming tasks
+      foreach ($tasks as $task) {
+        echo '<div>' . $task['name'] . ' - ' . $task['due_date'] . '</div>';
+      }
+    ?>
+  </section>
+  <section class="project-progress">
+    <h3>Project Progress</h3>
+    <?php
+      // Generate summary of project progress
+      echo '<div>Projects Completed: ' . $completed_projects . '</div>';
+      echo '<div>Projects In Progress: ' . $in_progress_projects . '</div>';
+      echo '<div>Projects Not Started: ' . $not_started_projects . '</div>';
+    ?>
+  </section>
+</div>
+</body>
+</html>
