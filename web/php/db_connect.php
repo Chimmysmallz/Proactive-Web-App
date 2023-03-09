@@ -55,6 +55,27 @@ function checkUserLogin($email, $password) {
   }
 }
 
+function insert_project($name, $user_id) {
+  global $conn;
+
+  // prepare SQL statement
+  $stmt = $conn->prepare("INSERT INTO Projects (name, user_id) VALUES (?, ?)");
+
+  // bind parameters
+  $stmt->bind_param("si", $name, $user_id);
+
+  // execute statement
+  $stmt->execute();
+
+  // get inserted project ID
+  $project_id = $stmt->insert_id;
+
+  // close statement
+  $stmt->close();
+
+  return $project_id;
+}
+
 // example usage of SQL queries
 $email = 'example@example.com';
 $stmt = $conn->prepare(QUERY_GET_USER_BY_EMAIL);
