@@ -15,7 +15,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-define('QUERY_GET_USER_BY_EMAIL', 'SELECT id FROM Users WHERE email = ?');
+define('QUERY_GET_USER_BY_EMAIL', 'SELECT * FROM Users WHERE email = ?');
 
 function checkUserLogin($email, $password) {
   global $conn;
