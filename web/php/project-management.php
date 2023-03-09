@@ -1,6 +1,6 @@
 <?php
-// Connect to MySQL database
-$mysqli = new mysqli("localhost", "username", "password", "database_name");
+    require_once(db_connect.php);
+?>
 
 // Check for connection errors
 if ($mysqli->connect_errno) {
