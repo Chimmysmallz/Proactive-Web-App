@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Project - Proactive Project Management</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="dashboard.php">Dashboard</a></li>
+				<li><a href="project-list.php">Projects</a></li>
+				<li><a href="#">Tasks</a></li>
+				<li><a href="#">Files</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h1>Delete Project</h1>
+		<!-- Project details and delete confirmation form goes here -->
+    <form action="delete-project.php" method="post" id="delete-project-form">
+    <h2>Delete Project</h2>
+    <p>Are you sure you want to delete this project?</p>
+    <div class="form-group">
+        <input type="hidden" name="project_id" value="<?php echo $project_id; ?>">
+        <input type="submit" name="delete" class="btn btn-danger" value="Delete">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
+    
+	</main>
+	<footer>
+		<p>&copy; 2023 Proactive Project Management</p>
+	</footer>
+</body>
+</html>
