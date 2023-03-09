@@ -15,18 +15,28 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-define('QUERY_GET_USER_BY_EMAIL', 'SELECT * FROM Users WHERE email = ?');
+define('QUERY_GET_USER_BY_EMAIL', 'SELECT id FROM Users WHERE email = ?');
 
 function checkUserLogin($email, $password) {
   global $conn;
   // prepare SQL statement
   $stmt = $conn->prepare("SELECT id FROM Users WHERE email = ? AND password = ?");
 
+  // check for errors preparing the statement
+  if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+  }
+
   // bind parameters
   $stmt->bind_param("ss", $email, $password);
 
   // execute statement
   $stmt->execute();
+
+  // check for errors executing the statement
+  if ($stmt->error) {
+    die("Error executing statement: " . $stmt->error);
+  }
 
   // bind result variables
   $stmt->bind_result($id);
@@ -48,8 +58,22 @@ function checkUserLogin($email, $password) {
 // example usage of SQL queries
 $email = 'example@example.com';
 $stmt = $conn->prepare(QUERY_GET_USER_BY_EMAIL);
+
+// check for errors preparing the statement
+if (!$stmt) {
+  die("Error preparing statement: " . $conn->error);
+}
+
 $stmt->bind_param('s', $email);
+
+// execute statement
 $stmt->execute();
+
+// check for errors executing the statement
+if ($stmt->error) {
+  die("Error executing statement: " . $stmt->error);
+}
+
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
