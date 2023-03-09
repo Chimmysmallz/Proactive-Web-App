@@ -1,25 +1,57 @@
 <?php
 
-// define constants for SQL queries
-define('QUERY_GET_USER_BY_EMAIL', 'SELECT * FROM users WHERE email = ?');
-define('QUERY_INSERT_USER', 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
+// Include the database connection file
+include_once 'db_connect.php';
 
-// define functions for SQL queries
-function get_project_by_id($project_id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare('SELECT * FROM projects WHERE id = ?');
-    $stmt->bind_param('i', $project_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_assoc();
+// Sample queries
+
+// 1. Retrieve all projects
+$projects_query = "SELECT * FROM projects";
+$projects_result = mysqli_query($conn, $projects_query);
+
+if ($projects_result) {
+  while ($project = mysqli_fetch_assoc($projects_result)) {
+    echo "Project Name: " . $project['name'] . "<br>";
+    echo "Project Owner: " . $project['owner'] . "<br>";
+    echo "Project Start Date: " . $project['start_date'] . "<br>";
+    echo "Project End Date: " . $project['end_date'] . "<br>";
+    echo "<br>";
+  }
+} else {
+  echo "Error retrieving projects: " . mysqli_error($conn);
 }
 
-function insert_project($name, $user_id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare('INSERT INTO projects (name, user_id) VALUES (?, ?)');
-    $stmt->bind_param('si', $name, $user_id);
-    $stmt->execute();
-    return $mysqli->insert_id;
+// 2. Insert a new project
+$new_project_query = "INSERT INTO projects (name, owner, start_date, end_date) VALUES ('New Project', 'John', '2023-02-01', '2023-02-28')";
+$new_project_result = mysqli_query($conn, $new_project_query);
+
+if ($new_project_result) {
+  echo "New project created successfully!";
+} else {
+  echo "Error creating new project: " . mysqli_error($conn);
 }
+
+// 3. Update an existing project
+$update_project_query = "UPDATE projects SET end_date = '2023-03-15' WHERE id = 1";
+$update_project_result = mysqli_query($conn, $update_project_query);
+
+if ($update_project_result) {
+  echo "Project updated successfully!";
+} else {
+  echo "Error updating project: " . mysqli_error($conn);
+}
+
+// 4. Delete an existing project
+$delete_project_query = "DELETE FROM projects WHERE id = 2";
+$delete_project_result = mysqli_query($conn, $delete_project_query);
+
+if ($delete_project_result) {
+  echo "Project deleted successfully!";
+} else {
+  echo "Error deleting project: " . mysqli_error($conn);
+}
+
+// Close the database connection
+mysqli_close($conn);
 
 ?>
