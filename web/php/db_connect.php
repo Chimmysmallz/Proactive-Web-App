@@ -15,10 +15,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-function checkUserLogin($email, $password) {
-  // create connection
-  $conn = db_connect();
+define('QUERY_GET_USER_BY_EMAIL', 'SELECT id FROM Users WHERE email = ?');
 
+function checkUserLogin($email, $password) {
+  global $conn;
   // prepare SQL statement
   $stmt = $conn->prepare("SELECT id FROM Users WHERE email = ? AND password = ?");
 
@@ -36,7 +36,6 @@ function checkUserLogin($email, $password) {
 
   // close statement and connection
   $stmt->close();
-  $conn->close();
 
   // return user id or false if no user found
   if ($id) {
