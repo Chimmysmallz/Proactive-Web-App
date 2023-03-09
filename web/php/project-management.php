@@ -1,6 +1,8 @@
 <?php
-    require_once(db_connect.php);
+    require_once('db_connect.php');
 ?>
+
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 // Check for connection errors
 if ($mysqli->connect_errno) {
