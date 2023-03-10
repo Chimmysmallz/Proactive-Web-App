@@ -18,14 +18,25 @@ if (!$conn) {
 $email = 'chidexnwabulue@gmail.com';
 $password = 'password';
 
-// SQL query to insert the new user into the Users table
-$sql = "INSERT INTO Users (email, password) VALUES ('$email', '$password')";
+// Check if the email already exists in the database
+$email_check_query = "SELECT * FROM Users WHERE email='$email' LIMIT 1";
+$result = mysqli_query($conn, $email_check_query);
+$user = mysqli_fetch_assoc($result);
 
-// Execute the query and check for errors
-if (mysqli_query($conn, $sql)) {
-    echo "New user created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+if ($user) { // if email exists
+    if ($user['email'] === $email) {
+        echo "Error: Email already exists";
+    }
+} else { // if email does not exist, insert new user
+    // SQL query to insert the new user into the Users table
+    $sql = "INSERT INTO Users (email, password) VALUES ('$email', '$password')";
+
+    // Execute the query and check for errors
+    if (mysqli_query($conn, $sql)) {
+        echo "New user created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 }
 
 // Close the database connection
