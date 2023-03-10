@@ -90,7 +90,13 @@ if ($stmt->error) {
 }
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
-$name = 'Example Project';
-$user_id = $user['id'];
-$project_id = insert_project($name, $user_id);
-?>
+
+// add the following code after fetching the user data
+if ($user !== null) {
+    $user_id = $user['id'];
+    $name = 'Example Project';
+    $project_id = insert_project($name, $user_id);
+} else {
+    // handle the case where no user is found with the given email
+    echo "No user found with email $email";
+}
