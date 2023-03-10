@@ -58,11 +58,17 @@ function checkUserLogin($email, $password) {
   }
 }
 
+
 function insert_project($name, $user_id) {
   global $conn;
 
   // prepare SQL statement
   $stmt = $conn->prepare("INSERT INTO Projects (name, user_id) VALUES (?, ?)");
+
+  // check for errors preparing the statement
+  if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+  }
 
   // bind parameters
   $stmt->bind_param("si", $name, $user_id);
