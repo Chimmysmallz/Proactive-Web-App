@@ -18,6 +18,7 @@ if (!$conn) {
 $email = 'chidexnwabulue@gmail.com';
 $password = 'password';
 
+
 // Check if the email already exists in the database
 $email_check_query = "SELECT * FROM Users WHERE email='$email' LIMIT 1";
 $result = mysqli_query($conn, $email_check_query);
