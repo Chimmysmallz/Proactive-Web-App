@@ -7,6 +7,9 @@ $db_user = "proactive_user";
 $db_pass = "password";
 $db_name = "proactive";
 
+// Add test users
+require_once 'insert_user.php';
+
 // Establish database connection
 $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
